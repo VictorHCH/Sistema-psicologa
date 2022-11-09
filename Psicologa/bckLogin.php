@@ -21,7 +21,6 @@
                 else if(password_verify($pass, $info["pass"])){
                     echo "Sesion iniciada";
                     $_SESSION["id"] = $info["id"];
-                    $_SESSION["rango"] = $info["rango"];
                     // header("location: index.php");
                 }
                 else {
