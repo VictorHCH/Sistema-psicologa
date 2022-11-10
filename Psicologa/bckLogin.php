@@ -4,11 +4,18 @@
         header("location: index.php");
         exit("IDK");
     }
+    require('../vendor/autoload.php');
     require_once("./privado/config.php");
-    $usuario = filter_input(INPUT_POST, "usuario");
-    $pass = $_POST['pass'];
 
-    if(strlen($usuario) > 2 && strlen($pass) > 7){
+    use Rakit\Validation\Validator;
+    $validator = new Validator;
+    $validation = $validator->validate($_POST , [
+        'usuario'                  => 'required|min:3|max:20',
+        'pass'                  => 'required|min:8|max:50',
+    ]);
+    if(!$validation->fails()){
+        $usuario = filter_input(INPUT_POST, "usuario");
+        $pass = $_POST['pass'];
         $usuario = $db->real_escape_string($usuario);
         $query = "SELECT * FROM `usuarios` WHERE `usuario` = '$usuario'";
         $resUsuario = $db->query($query);
@@ -38,6 +45,7 @@
         $db->close();
     }
     else {
+        http_response_code(400);
         echo "Parametros incompletos!";
     }
 ?>
