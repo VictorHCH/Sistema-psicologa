@@ -1,14 +1,25 @@
 <?php 
+session_start();
 if(!isset($_SESSION['id'])){
     echo "No tienes permiso de estar aqui";
-    exit(401); //No estoy seguro de utilizar este codigo xD
+    http_response_code(401);
 }
+require('../vendor/autoload.php');
 require_once('./privado/config.php');
-$fecha = filter_input(INPUT_POST, 'fecha');
-$alumno = filter_input(INPUT_POST, 'alumno');
+
+use Rakit\Validation\Validator;
+$validator = new Validator;
+$validation = $validator->validate($_POST , [
+    'fecha'                  => 'required|date',
+    'alumno'                  => 'required|numeric',
+]);
 
 
-if( strlen($fecha) == 10 && is_numeric($alumno) ){
+
+if( !$validation->fails() ){
+
+    $fecha = filter_input(INPUT_POST, 'fecha');
+    $alumno = filter_input(INPUT_POST, 'alumno');
 
     $fecha = $db->real_escape_string($fecha);
     $alumno = $db->real_escape_string($alumno);
@@ -30,6 +41,7 @@ if( strlen($fecha) == 10 && is_numeric($alumno) ){
     $db->close();
 }
 else {
+    http_response_code(400);
     echo "error al enviar los datos";
 }
 
