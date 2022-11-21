@@ -10,16 +10,16 @@
     use Rakit\Validation\Validator;
     $validator = new Validator;
     $validation = $validator->validate($_GET, [
-        'usuario'                  => 'required|min:3|max:20',
+        'alumno'                  => 'required|numeric',
     ]);
     if(!$validation->fails()){
-        $usuario = $_POST['usuario'];
-        $usuario = $db->real_escape_string($usuario);
-        $query = "SELECT `id`, `numero_control`, `nombres`, `apellidos`, `curp`, `peso`, `estatura`, `fecha_alta`, `tipo_sangre` FROM `alumnos` WHERE alumnos.id = $usuario AND alumnos.id_psicologa = $_SESSION[id]";
+        $alumno = $_GET['alumno'];
+        $alumno = $db->real_escape_string($alumno);
+        $query = "SELECT `id`, `numero_control`, `nombres`, `apellidos`, `curp`, `peso`, `estatura`, `fecha_alta`, `tipo_sangre` FROM `alumnos` WHERE alumnos.id = $alumno AND alumnos.id_psicologa = $_SESSION[id]";
         $resUsuario = $db->query($query);
         if($resUsuario){
             if($resUsuario->num_rows == 1){
-                print_r($resUsuario);
+                print_r($resUsuario->fetch_assoc());
             }
             else{
                 echo "Usuario no encontrado";
