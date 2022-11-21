@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION['id'])){
     echo "No tienes permiso de estar aqui";
-    exit(401); //No estoy seguro de utilizar este codigo xD
+    http_response_code(401);
 }
 require('../vendor/autoload.php');
 require_once('./privado/config.php');
