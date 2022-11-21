@@ -1,4 +1,5 @@
 <?php 
+session_start();
 if(!isset($_SESSION['id'])){
     echo "No tienes permiso de estar aqui";
     exit(401); //No estoy seguro de utilizar este codigo xD
