@@ -3,6 +3,7 @@ session_start();
 if(!isset($_SESSION['id'])){
     echo "No tienes permiso de estar aqui";
     http_response_code(401);
+    exit();
 }
 require_once('./privado/config.php');
 
