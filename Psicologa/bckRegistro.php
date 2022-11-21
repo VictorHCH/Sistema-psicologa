@@ -3,12 +3,21 @@ session_start();
 if(isset($_SESSION['id'])){
     exit("sesion ya inciada");
 }
+require('../vendor/autoload.php');
 require_once('./privado/config.php');
-$usuario = filter_input(INPUT_POST, 'usuario');
-$nombre = filter_input(INPUT_POST, 'nombre');
-$pass = $_POST['pass'];
 
-if (strlen($usuario) > 2 && strlen($nombre > 4) && strlen($pass) > 7){
+use Rakit\Validation\Validator;
+$validator = new Validator;
+$validation = $validator->validate($_POST , [
+    'usuario'                  => 'required|min:3|max:25',
+    'nombre'                  => 'required|min:5|max:100',
+    'pass'                  => 'required|min:8|max:50',
+]);
+
+if (!$validation->fails()){
+    $usuario = filter_input(INPUT_POST, 'usuario');
+    $nombre = filter_input(INPUT_POST, 'nombre');
+    $pass = $_POST['pass'];
     $usuario = $db->real_escape_string($usuario);
     $nombre = $db->real_escape_string($nombre);
     $pass = password_hash($pass, PASSWORD_BCRYPT);
@@ -32,6 +41,7 @@ if (strlen($usuario) > 2 && strlen($nombre > 4) && strlen($pass) > 7){
     $db->close();
 }
 else{
+    http_response_code(400);
     echo "Error al introducir parametros";
 }
 
