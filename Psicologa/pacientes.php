@@ -2,7 +2,14 @@
 session_start();
 if(!isset($_SESSION['id'])){
     header("location: ./index.php");
+    exit();
 }
+require_once("./privado/config.php");
+require_once('./privado/componentes/pacientes-paciente.php');
+$query = "SELECT `id`, `numero_control`, CONCAT(nombres, ' ', apellidos) as nombre_completo FROM `alumnos` WHERE id_psicologa = $_SESSION[id] ORDER BY apellidos ASC";
+$alumnos = $db->query($query);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,12 +33,14 @@ if(!isset($_SESSION['id'])){
             <span class="Agregar-paciente">Agregar paciente</span>
         </div>
         <div class="contenedor-pacientes">
-            <div class="Rectangle-3">
-                <div class="Ellipse-7">
-                    <span class="ini">YC</span>
-                </div>
-                <span class="Nombre-p">Yaritza Corazón Leyva Portillo</span>
-            </div>
+            <?php
+                foreach ($alumnos as $key => $alumno) {
+                    # code...
+                    componentePaciente($alumno['nombre_completo'], $alumno['id']);
+                }
+                $alumnos->free_result();
+                $db->close();
+            ?>
         </div>
     </div>
 </body>
