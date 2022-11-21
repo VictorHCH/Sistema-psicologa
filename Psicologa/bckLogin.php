@@ -23,6 +23,7 @@
             if($resUsuario->num_rows == 1){
                 $info = $resUsuario->fetch_assoc();
                 if ($info["puede_entrar"] == 0){
+                    http_response_code(401);
                     echo "Este usuario no tiene permiso de accesar";
                 }
                 else if(password_verify($pass, $info["pass"])){
@@ -31,14 +32,17 @@
                     // header("location: index.php");
                 }
                 else {
+                    http_response_code(403);
                     echo "Contraseña incorrecta!";
                 }
             }
             else{
+                http_response_code(403);
                 echo "Este usuario no existe!";
             }
         }
         else {
+            http_response_code(500);
             echo "Error en consulta";
         }
         $resUsuario->free_result();
