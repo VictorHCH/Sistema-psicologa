@@ -1,14 +1,12 @@
 <?php 
-if(isset($_SESSION['id'])){
+if(!isset($_SESSION['id'])){
     echo "No tienes permiso de estar aqui";
     exit(401); //No estoy seguro de utilizar este codigo xD
 }
 require_once('./privado/config.php');
 
-// NOTA: agregar a consulta que se ordene por fecha ascendente
 
-// $query = "SELECT consultas.id, DATE(`fecha`) AS fecha, fecha AS fecha_hora, `asistio`, alumno AS id_alumno, CONCAT(alumnos.nombres, ' ', alumnos.apellidos) AS alumno FROM `consultas` INNER JOIN alumnos ON alumnos.id = consultas.alumno WHERE consultas.fecha <= NOW() AND id_usuario = 24;"
-$query = "SELECT consultas.id, DATE(`fecha`) AS fecha, fecha AS fecha_hora, `asistio`, alumno AS id_alumno, CONCAT(alumnos.nombres, ' ', alumnos.apellidos) AS alumno FROM `consultas` INNER JOIN alumnos ON alumnos.id = consultas.alumno WHERE consultas.fecha <= NOW() ";
+$query = "SELECT consultas.id, DATE(`fecha`) AS fecha, fecha AS fecha_hora, `asistio`, alumno AS id_alumno, CONCAT( alumnos.nombres, ' ', alumnos.apellidos ) AS alumno FROM `consultas` INNER JOIN alumnos ON alumnos.id = consultas.alumno WHERE consultas.fecha >= NOW() AND id_usuario = 24 ORDER BY fecha ASC;";
 
 
 $res = $db->query($query);
@@ -30,10 +28,9 @@ try {
     //throw $th;
     echo $th->getMessage();
 }
-
 print_r($lista);
-echo "<br><br><br>";
-print_r(array_keys($lista));
+$res->free_result();
+$db->close();
 
 
 ?>
