@@ -25,11 +25,13 @@ if(!isset($_SESSION['id'])){
         <div class="Rectan">
             <span class="Agregar-paciente">Agregar paciente</span>
         </div>
-        <div class="Rectangle-3">
-            <div class="Ellipse-7">
-                <span class="ini">YC</span>
+        <div class="contenedor-pacientes">
+            <div class="Rectangle-3">
+                <div class="Ellipse-7">
+                    <span class="ini">YC</span>
+                </div>
+                <span class="Nombre-p">Yaritza Corazón Leyva Portillo</span>
             </div>
-            <span class="Nombre-p">Yaritza Corazón Leyva Portillo</span>
         </div>
     </div>
 </body>
