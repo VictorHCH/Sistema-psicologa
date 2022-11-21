@@ -18,18 +18,20 @@ if(isset($_SESSION['id'])){
         <img src="Recursos/Onda2.png">
         <span class="TecPsi2">TecPsi</span>
         <div class="Rectangle-1">
-            <form action="">
+            <form action="./bckLogin.php" id="form-login">
                 <label>Usuario</label>
                 <br>
-                <input type="text">
+                <input type="text" id="usuario">
                 <br>
                 <label>Contraseña</label>
                 <br>
-                <input type="password">
+                <input type="password" id="pass">
                 <br>
                 <input type="submit" value="Iniciar sesión">
             </form>
         </div>
     </div>
+
+    <script src="./Recursos/js/login.js"></script>
 </body>
 </html>
