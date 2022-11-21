@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +14,19 @@
     <div class="Vector">
         <img src="Recursos/Onda.png">
         <span class="TecPsi">TecPsi</span>
-        <span class="Iniciar-sesin">Iniciar sesión</span>
+        <?php 
+            if (!isset($_SESSION["id"])) {
+                ?>
+                <a href="./inicio_sesion.php" class="Iniciar-sesin">Iniciar sesión</a>
+                <?php
+            } else {
+                ?>
+                <a href="./citas.php" class="Iniciar-sesin">Continuar</a>
+                <?php
+            }
+            
+        ?>
+        
     </div>
     <span class="Bienvenido">¡Bienvenido!</span>
     <div class="Imagen"><img src="Recursos/Imagen.png"></div>
