@@ -41,7 +41,7 @@ body {
 
 .formas__item {
     margin: 0 auto;
-    background: #00608d98;
+    background: #1583b698;
     box-shadow: 0 8px 10px rgba(66, 66, 66, .5);
     border-radius: 50px;
     padding: 50px 50px;
@@ -64,6 +64,16 @@ body {
 .hero {
     height: 100vh;
     background-image: var(--background), url('../images/stress-gff960b0a9_1920.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+}
+
+.hero2 {
+    height: 150vh;
+    background-image: var(--background), url('../images/mental-health-2313428_1920.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
