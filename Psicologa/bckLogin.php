@@ -29,7 +29,7 @@
                 else if(password_verify($pass, $info["pass"])){
                     echo "Sesion iniciada";
                     $_SESSION["id"] = $info["id"];
-                    // header("location: index.php");
+                    header("location: citas.html");
                 }
                 else {
                     http_response_code(403);
