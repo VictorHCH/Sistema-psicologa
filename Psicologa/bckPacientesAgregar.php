@@ -42,8 +42,8 @@ if( !$validation->fails() ){
     $tipo_sangre = $db->real_escape_string($tipo_sangre);
 
     
-    $query = "INSERT INTO `alumnos`( `numero_control`, `nombres`, `apellidos`, `curp`, `peso`, `estatura`, `fecha_alta`, `tipo_sangre`) VALUES
-    ('$numero_control','$nombres','$apellidos','$curp','$peso','$estatura','$fecha_alta','$tipo_sangre')";
+    $query = "INSERT INTO `alumnos`( `numero_control`, `nombres`, `apellidos`, `curp`, `peso`, `estatura`, `fecha_alta`, `tipo_sangre`, `id_psicologa`) VALUES
+    ('$numero_control','$nombres','$apellidos','$curp','$peso','$estatura','$fecha_alta','$tipo_sangre', $_SESSION[id])";
 
     try {
         $res = $db->query($query);
@@ -53,6 +53,7 @@ if( !$validation->fails() ){
         //code...
     } catch (\Throwable $th) {
         //throw $th;
+        http_response_code(500);
         echo "ocurrio un error";
     }
     
