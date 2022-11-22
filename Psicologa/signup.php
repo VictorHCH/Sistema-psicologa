@@ -11,56 +11,51 @@
 </head>
 
 <body>
-    <header class="hero">
+    <header class="hero2">
         <div class="container">
             <nav class="nav">
                 <p class="nav__items nav__items--cta">
                     <?php echo date("Y-m-d");?>
+                   
                 </p>
+                <p class="nav__items nav__items--cta"> <a href="login.php">Inicio de Sesion</a></p>
                 
             </nav>
             <section class="hero__container">
                 <div class="hero__texts">
                     <h1 class="hero__title">Mi Psiconsultorio.</h1>
-                    <h2 class="hero__subtitle">Dueña del programa</h2>
-                    <a href="#formas" class="hero__cta">Inicio</a>
-                </div>
-            </section>
-        </div>
-        <div class="hero__wave" style="overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill:#fff;"></path></svg></div>
-    </header>
-
-    <main>
-        <section class="presentation container">
+                    <section class="presentation container">
             <!-- p -->
-            <div class="formas__grid" >
+            <div class="formas__grid" id="formas">
                 <article class="formas__item">
                     <img src="images/mental-health-2019924_1920.jpg" class="presentation__picture" id="mental">
-                    <h2 class="subtitle2" id="Inicio">Inicio
+                    <h2 class="subtitle2" id="Inicio">Registro de Usuario
                     </h2>
 
                     <!--Aqui va el inicio para entrar-->
 
 
                     <form action="logon.php" method="POST">
-                        <h2 class="formas__title" >Ingresar</h2>
-                        <input class="formas" id="formas" type="text" minlength="3" name="user" placeholder="Usuario"><br>
+                        <h2 class="formas__title">Registro</h2>
+                      
+                        <input class="formas" type="text" minlength="3" name="user" placeholder="Nombre Completo"><br>
+                        <input class="formas" type="text" minlength="3" name="user" placeholder="Usuario"><br>
                         <input class="formas" type="password" minlength="8" name="password" placeholder="Contraseña"><br>
-                        <input class="presentation__cta" type="submit" id="sumit" value="Ingresar">
+                        <input class="presentation__cta" type="submit" id="submit" value="Registrar">
                     </form>
-                    <br>
-                    <a href="signup.php" class="formas__title">¿No tienes cuenta? <i> <u> Haz click aqui</u></i></a>
                 </article>
             </div>
            
-            
+
 
         </section>
-        <br>
-        <br>
-
+                </div>
+            </section>
         </div>
-        </section>
+       
+    </header>
+
+    
 
     </main>
     <footer class="footer">
