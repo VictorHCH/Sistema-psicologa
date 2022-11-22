@@ -39,13 +39,12 @@
                     <h2 class="subtitle2" id="Inicio">Inicio
                     </h2>
 
-                    <!--Aqui va el inicio para entrar-->
 
-
-                    <form action="logon.php" method="POST">
-                        <h2 class="formas__title" >Ingresar</h2>
-                        <input class="formas" id="formas" type="text" minlength="3" name="user" placeholder="Usuario"><br>
-                        <input class="formas" type="password" minlength="8" name="password" placeholder="Contraseña"><br>
+                    <form action="bckLogin.php" method="POST">
+                        <h2 class="formas__title">Ingresar</h2>
+                        <input class="formas" type="text" minlength="3" name="usuario" placeholder="Usuario"><br>
+                        <input class="formas" type="password" minlength="8" name="pass" placeholder="Contraseña"><br>
+                        
                         <input class="presentation__cta" type="submit" id="sumit" value="Ingresar">
                     </form>
                     <br>
