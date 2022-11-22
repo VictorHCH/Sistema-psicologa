@@ -7,6 +7,7 @@ body {
     font-family: Gill Sans MT;
     font-size: 14px;
     width: 100%;
+    height: 700px;
 }
 
 .v3_21 {
@@ -1464,5 +1465,32 @@ body {
     border-bottom-left-radius: 75px;
     border-bottom-right-radius: 75px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.v6_66 {
+    top: 470px;
+    left: 80px;
+    width: 242px;
+    height: 97px;
+    border-radius: 25px;
+    background: rgba(22, 62, 202, 1);
+    opacity: 1;
+    position: absolute;
+    top: 579px;
+    left: 513px;
+}
+
+.v6_67 {
+    width: 69px;
+    height: 66px;
+    background: url("../images/v6_67.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 595px;
+    left: 599px;
     overflow: hidden;
 }
