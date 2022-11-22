@@ -30,7 +30,7 @@ $alumnos = $db->query($query);
     </div>
     <div class="Agenda">
         <div class="Rectan">
-            <a href="./Pacientes_new.php" class="Agregar-paciente">Agregar paciente</a>
+            <a href="./pacientes_new.php" class="Agregar-paciente">Agregar paciente</a>
         </div>
         <div class="contenedor-buscar">
             <input id="buscador" type="text" class="buscar entradasTexto marginLabel" placeholder="Buscar paciente">
