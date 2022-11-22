@@ -26,37 +26,37 @@ if(!isset($_SESSION['id'])){
             <form action="">
                 <label>Nombre</label>
                 <br>
-                <input type="text">
+                <input class="entradasTexto marginLabel" type="text">
                 <br>
                 <label>Número de control</label>
                 <br>
-                <input type="number">
+                <input class="entradasTexto marginLabel" type="number">
                 <br>
                 <label>Edad</label>
                 <br>
-                <input type="number">
+                <input class="entradasTexto marginLabel" type="number">
                 <br>
                 <label>Fecha de nacimiento</label>
                 <br>
-                <input type="date">
+                <input class="entradasTexto marginLabel" type="date">
                 <br>
                 <label>Sexo</label>
                 <br>
-                <input list="sexo">
+                <input class="entradasTexto marginLabel" list="sexo">
                 <br>
                 <label>Número de teléfono</label>
                 <br>
-                <input type="number">
+                <input class="entradasTexto marginLabel" type="number">
                 <br>
                 <label>Fecha de ingreso</label>
                 <br>
-                <input type="date">
+                <input class="entradasTexto marginLabel" type="date">
                 <br>
                 <label>Motivo de consulta</label>
                 <br>
-                <input type="text">
+                <input class="entradasTexto marginLabel" type="text">
                 <br>
-                <input type="submit" value="Agregar paciente">
+                <input class="boton botonPrimario" type="submit" value="Agregar paciente">
             </form>
         </div>
     </div>

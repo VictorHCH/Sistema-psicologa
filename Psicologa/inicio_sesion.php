@@ -21,13 +21,13 @@ if(isset($_SESSION['id'])){
             <form action="./bckLogin.php" id="form-login">
                 <label>Usuario</label>
                 <br>
-                <input type="text" id="usuario">
+                <input class="entradasTexto marginLabel" type="text" id="usuario">
                 <br>
                 <label>Contraseña</label>
                 <br>
-                <input type="password" id="pass">
+                <input class="entradasTexto marginLabel" type="password" id="pass">
                 <br>
-                <input type="submit" value="Iniciar sesión">
+                <input class="boton botonPrimario" type="submit" value="Iniciar sesión">
             </form>
         </div>
     </div>
