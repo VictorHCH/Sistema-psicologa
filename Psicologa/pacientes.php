@@ -30,9 +30,12 @@ $alumnos = $db->query($query);
     </div>
     <div class="Agenda">
         <div class="Rectan">
-            <span class="Agregar-paciente">Agregar paciente</span>
+            <a href="./Pacientes_new.php" class="Agregar-paciente">Agregar paciente</a>
         </div>
-        <div class="contenedor-pacientes">
+        <div class="contenedor-buscar">
+            <input id="buscador" type="text" class="buscar" placeholder="Buscar paciente">
+        </div>
+        <div class="contenedor-pacientes" id="contenedor-pacientes">
             <?php
                 foreach ($alumnos as $key => $alumno) {
                     # code...
@@ -43,5 +46,6 @@ $alumnos = $db->query($query);
             ?>
         </div>
     </div>
+    <script src="./Recursos/js/buscador.js"></script>
 </body>
-</html>
+</html> 

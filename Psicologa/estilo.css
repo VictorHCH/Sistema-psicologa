@@ -12,6 +12,10 @@ body {
     max-width: 1200px;
     padding: 0 20px;
 }
+.contenedor-buscar{
+    display: flex;
+    justify-content: center;
+}
 .Vector {
     width: 100%;
     height: 100%;
