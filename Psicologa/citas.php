@@ -59,7 +59,9 @@ $fechas = array_keys($lista);
                     ?>
                 </div> 
         <?php
-            }    
+            }
+            $res->free_result();
+            $db->close();    
         ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.1.0/build/global/luxon.min.js"></script>
