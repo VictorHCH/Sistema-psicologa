@@ -5,6 +5,7 @@ if(!isset($_SESSION['id'])){
     exit();
 }
 require_once('./privado/config.php');
+require_once('./privado/componentes/cabecera.php');
 require('./privado/componentes/citas-pacientes.php');
 $query = "SELECT consultas.id, DATE(`fecha`) AS fecha, fecha AS fecha_hora, `asistio`, alumno AS id_alumno, CONCAT( alumnos.nombres, ' ', alumnos.apellidos ) AS alumno FROM `consultas` INNER JOIN alumnos ON alumnos.id = consultas.alumno WHERE consultas.fecha >= NOW() AND id_usuario = $_SESSION[id] ORDER BY fecha ASC";
 
@@ -36,13 +37,7 @@ $fechas = array_keys($lista);
     <link href="estilo.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="c">
-    <div class="Vector">
-        <img src="Recursos/Onda3.png">
-        <span class="TecPsi3">TecPsi</span>
-        <span class="Citas">Citas</span>
-        <span class="Pacientes">Pacientes</span>
-        <div class="Cerrar"><img src="Recursos/Cerrar sesión.png"></div>
-    </div>
+    <?php cabecera(); ?>
     <div class="Agenda">
         <!-- <div class="Rectangle"> -->
             <!-- <a href="./citas_new.php" class=" boton botonPrimario">Agregar cita</a> -->

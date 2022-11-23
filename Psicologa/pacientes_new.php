@@ -5,6 +5,7 @@ if(!isset($_SESSION['id'])){
     exit();
 }
 require_once("./privado/config.php");
+require_once('./privado/componentes/cabecera.php');
 $query = "SELECT `id`, `nombre` FROM `tipos_sangre`";
 $tipos_sangre = $db->query($query);
 ?>
@@ -18,13 +19,7 @@ $tipos_sangre = $db->query($query);
     <link href="estilo.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="c">
-    <div class="Vector">
-        <img src="Recursos/Onda3.png">
-        <span class="TecPsi3">TecPsi</span>
-        <span class="Citas">Citas</span>
-        <span class="Pacientes">Pacientes</span>
-        <div class="Cerrar"><img src="Recursos/Cerrar sesión.png"></div>
-    </div>
+    <?php cabecera(); ?>
     <div class="Agenda">
         <div class="Rectangle-123" style="display: flex; justify-content: center ;">
             <form action="" id="formulario">

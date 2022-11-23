@@ -6,6 +6,7 @@ if(!isset($_SESSION['id'])){
 }
 require_once("./privado/config.php");
 require_once('./privado/componentes/pacientes-paciente.php');
+require_once('./privado/componentes/cabecera.php');
 $query = "SELECT `id`, `numero_control`, CONCAT(nombres, ' ', apellidos) as nombre_completo FROM `alumnos` WHERE id_psicologa = $_SESSION[id] ORDER BY apellidos ASC";
 $alumnos = $db->query($query);
 
@@ -21,13 +22,7 @@ $alumnos = $db->query($query);
     <link href="estilo.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="c">
-    <div class="Vector">
-        <img src="Recursos/Onda3.png">
-        <span class="TecPsi3">TecPsi</span>
-        <span class="Citas">Citas</span>
-        <span class="Pacientes">Pacientes</span>
-        <div class="Cerrar"><img src="Recursos/Cerrar sesión.png"></div>
-    </div>
+    <?php cabecera(); ?>
     <div class="Agenda">
         <div class="Rectan">
             <a href="./pacientes_new.php" class="Agregar-paciente">Agregar paciente</a>
