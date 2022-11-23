@@ -2,6 +2,32 @@
 session_start();
 if(!isset($_SESSION['id'])){
     header("location: ./index.php");
+    exit();
+}
+require("../vendor/autoload.php");
+require_once("./privado/config.php");
+
+use Rakit\Validation\Validator;
+$validator = new Validator;
+$validation = $validator->validate($_GET , [
+    'alumno'                  => 'required|numeric',
+]);
+
+if($validation -> fails()){
+    http_response_code(400);
+    header("location: ./citas.php");
+    exit();
+}
+try {
+    //code...
+    $alumno = filter_input(INPUT_GET, 'alumno');
+    $query = "SELECT alumnos.id, `numero_control`, CONCAT(`nombres`, ' ', `apellidos`) AS nombre_completo, `curp`, `peso`, `estatura`, `fecha_alta`, tipos_sangre.nombre AS tipo_sangre FROM `alumnos` INNER JOIN tipos_sangre ON tipos_sangre.id = alumnos.tipo_sangre WHERE alumnos.id = $alumno AND alumnos.id_psicologa = $_SESSION[id]";
+    $peticion = $db->query($query);
+} catch (\Throwable $th) {
+    //throw $th;
+    http_response_code(500);
+    header("location: ./citas.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -23,42 +49,56 @@ if(!isset($_SESSION['id'])){
     </div>
     <div class="Agenda">
         <div class="Rectangle-31">
-            <div class="Ellipse-8">
-                <span class="inic">YC</span>
+
+            <?php 
+                if ($peticion->num_rows == 1) {
+                    $datos = $peticion->fetch_assoc();
+                } else {
+                    echo "Usuario no encontrado";
+                }
+                
+            ?>
+            <div class="contenedor">
+            <div class="Ellipse-7">
+                <span class="ini">YC</span>
             </div>
-            <span class="Nombre-pa">Yaritza Corazón Leyva Portillo</span>
+            <span class="Nombre-pa"><?= $datos['nombre_completo'] ?></span>
             <span class="label1">Número de control</span>
             <br>
-            <span class="nc">19410269</span>
+            <span class="nc"><?= $datos['numero_control'] ?> </span>
             <br>
-            <span class="label2">Edad</span>
+            <!-- <span class="label2">Edad</span>
             <br>
             <span class="edad">21 años</span>
             <br>
             <span class="label3">Fecha de nacimiento</span>
             <br>
             <span class="fn">3 de marzo de 2001</span>
-            <br>
+            <br> -->
             <span class="label4">Sexo</span>
             <br>
-            <span class="s">Femenino</span>
+            <span class="s"><?= $retVal = (substr($datos['curp'], 10, 1) == 'H') ? "Masculino" : "Femenino" ; ?></span>
             <br>
-            <span class="label5">Número de teléfono</span>
+            <!-- <span class="label5">Número de teléfono</span>
             <br>
             <span class="telefono">625212603</span>
-            <br>
+            <br> -->
             <span class="label6">Fecha de ingreso</span>
             <br>
-            <span class="fi">9 de noviembre de 2022</span>
+            <span class="fi"><?= $datos['fecha_alta'] ?></span>
             <br>
-            <span class="label7">Motivo de consulta</span>
             <br>
-            <span class="motivo">Ansiedad</span>
+            <button class="b1 boton botonPrimario">Agregar anotación</button>
             <br>
-            <button class="b1">Agregar anotación</button>
-            <br>
-            <button class="b2">Editar paciente</button>
+            <button class="b1 boton botonSecundarios">Crear cita</button>
+            <!-- <button class="b2">Editar paciente</button> -->
+            </div>
         </div>
     </div>
+    <?php 
+        $peticion->free_result();
+        $db->close();
+    ?>
+    <script src=""></script>
 </body>
 </html>
