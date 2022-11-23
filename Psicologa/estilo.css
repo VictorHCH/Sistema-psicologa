@@ -44,7 +44,8 @@ body {
   
 }
 .tarjetaInterna{
-    flex: 0 0 auto
+    flex: 0 0 auto;
+    cursor: pointer;
 }
 .boton {
     padding: 10px 18px 10px 19px;
@@ -316,9 +317,9 @@ label{
     display:inline-block;
 }
 .Dia {
-    width: 632px;
-    height: 49px;
-    margin: 41px 300px 41px 30px;
+    /* width: 632px;
+    height: 49px; */
+    margin: 15px;
     font-family: Montserrat;
     font-size: 40px;
     font-weight: bold;
