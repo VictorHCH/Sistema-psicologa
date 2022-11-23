@@ -2,7 +2,29 @@
 session_start();
 if(!isset($_SESSION['id'])){
     header("location: ./index.php");
+    exit();
 }
+require_once('./privado/config.php');
+require('./privado/componentes/citas-pacientes.php');
+$query = "SELECT consultas.id, DATE(`fecha`) AS fecha, fecha AS fecha_hora, `asistio`, alumno AS id_alumno, CONCAT( alumnos.nombres, ' ', alumnos.apellidos ) AS alumno FROM `consultas` INNER JOIN alumnos ON alumnos.id = consultas.alumno WHERE consultas.fecha >= NOW() AND id_usuario = $_SESSION[id] ORDER BY fecha ASC";
+
+$res = $db->query($query);
+
+$lista = [];
+
+if ($res->num_rows > 0) {
+    # code...
+    foreach ($res->fetch_all(MYSQLI_ASSOC) as $key => $value) {
+        if (!array_key_exists($value['fecha'], $lista)) {
+            $lista[$value['fecha']][] = $value;
+        } else {
+            array_push($lista[$value['fecha']], $value);
+            // print_r($lista[$value['fecha']]);
+        }
+        # code...
+    }
+}
+$fechas = array_keys($lista);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,15 +44,25 @@ if(!isset($_SESSION['id'])){
         <div class="Cerrar"><img src="Recursos/Cerrar sesión.png"></div>
     </div>
     <div class="Agenda">
-        <span class="Dia">Hoy, 08 de noviembre de 2022</span>
-        <div class="Rectangle">
-            <span class="Agregar-cita">Agregar cita</span>
-        </div>
-        <div class="Rectangle-2">
-            <span class="Nombre">Yaritza Corazón Leyva Portillo</span>
-            <span class="Fecha">08/11/2022</span>
-            <span class="-am">10:00 a.m.</span>
-        </div>
+        <!-- <div class="Rectangle"> -->
+            <!-- <a href="./citas_new.php" class=" boton botonPrimario">Agregar cita</a> -->
+        <!-- </div> -->
+        <?php
+            foreach ($lista as $key => $fechaArreglo) { 
+        ?>
+                <span class="Dia "><?= $key  ?></span>
+                <div class="contenedorHorizontal">
+                    <?php
+                        foreach ($fechaArreglo as $key2 => $info) {
+                            componenteCita($info['alumno'], 22, $info['fecha_hora']);
+                        }
+                    ?>
+                </div> 
+        <?php
+            }    
+        ?>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.1.0/build/global/luxon.min.js"></script>
+    <script src="./Recursos/js/citas.js"></script>
 </body>
 </html>
