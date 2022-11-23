@@ -59,9 +59,9 @@ try {
                 
             ?>
             <div class="contenedor">
-            <div class="Ellipse-7">
+            <!-- <div class="Ellipse-7">
                 <span class="ini">YC</span>
-            </div>
+            </div> -->
             <span class="Nombre-pa"><?= $datos['nombre_completo'] ?></span>
             <span class="label1">Número de control</span>
             <br>
@@ -90,15 +90,22 @@ try {
             <br>
             <button class="b1 boton botonPrimario">Agregar anotación</button>
             <br>
-            <button class="b1 boton botonSecundarios">Crear cita</button>
+            <button class="b1 boton botonSecundarios" id="mostrar" >Crear cita</button>
             <!-- <button class="b2">Editar paciente</button> -->
+
+            <form action="post" hidden id="formulario">
+                <input class="entradasTexto" type="datetime" name="fecha" id="">
+                <input type="hidden" name="alumno" value="<?= $_GET['alumno'] ?>">
+                <input class="entradasTexto" type="submit" value="Crear cita">
+            </form>
             </div>
+
         </div>
     </div>
     <?php 
         $peticion->free_result();
         $db->close();
     ?>
-    <script src=""></script>
+    <script src="./Recursos/js/alumno.js"></script>
 </body>
 </html>

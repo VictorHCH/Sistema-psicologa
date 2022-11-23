@@ -11,7 +11,7 @@ require_once('./privado/config.php');
 use Rakit\Validation\Validator;
 $validator = new Validator;
 $validation = $validator->validate($_POST , [
-    'fecha'                  => 'required|date',
+    'fecha'                  => 'required',
     'alumno'                  => 'required|numeric',
 ]);
 
@@ -36,6 +36,7 @@ if( !$validation->fails() ){
         //code...
     } catch (\Throwable $th) {
         //throw $th;
+        http_response_code(500);
         echo "ocurrio un error";
     }
     

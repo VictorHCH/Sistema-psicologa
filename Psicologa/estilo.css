@@ -22,6 +22,15 @@ body {
     padding: 0 0 73px;
     background-color: #fff9f1;
 }
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;;
+
+}
 .contenedor-pacientes{
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
