@@ -89,7 +89,7 @@ try {
             <!-- <button class="b2">Editar paciente</button> -->
 
             <form action="post" hidden id="formulario">
-                <input class="entradasTexto" type="datetime" name="fecha" id="">
+                <input class="entradasTexto" type="datetime-local" name="fecha" id="">
                 <input type="hidden" name="alumno" value="<?= $_GET['alumno'] ?>">
                 <input class="entradasTexto" type="submit" value="Crear cita">
             </form>
