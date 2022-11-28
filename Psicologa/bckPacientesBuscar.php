@@ -6,11 +6,12 @@
     }
     require('../vendor/autoload.php');
     require_once("./privado/config.php");
+    require_once('./privado/componentes/pacientes-paciente.php');
 
     use Rakit\Validation\Validator;
     $validator = new Validator;
     $validation = $validator->validate($_POST, [
-        'consulta'                  => 'required|min:2|max:50',
+        'consulta'                  => 'min:0|max:50',
     ]);
     if(!$validation->fails()){
         $consulta = $_POST['consulta'];
@@ -21,12 +22,13 @@
         $resUsuarios = $db->query($query);
         if($resUsuarios){
             if($resUsuarios->num_rows >= 0){
-                $res = array();
+                // $res = array();
                 foreach ($resUsuarios->fetch_all(MYSQLI_ASSOC) as $key => $value) {
                     // Aqui se agregar cada uno de los renglos de resultado a un arreglo que se transformara a JSON
-                    $res[] = $value;
+                    // $res[] = $value;
+                    componentePaciente($value['nombre_completo'], $value['id']);
                 }
-                echo(json_encode($res));
+                // echo(json_encode($res));
             }
             else{
                 http_response_code(204);
